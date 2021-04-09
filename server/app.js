@@ -30,7 +30,7 @@ app.get('/title', async (req, res) => {
 
 app.get('/photos', async (req, res) => {
   try {
-    const response = await axios.get('https://react-bundles.s3.us-east-2.amazonaws.com/photos-service.js');
+    const response = await axios.get('https://sdc-photo-service-bundle.s3.us-east-2.amazonaws.com/photos-service.js');
     res.send(response.data);
   } catch (err) {
     console.error(err);
@@ -120,9 +120,14 @@ app.get('/rooms/:id/title', async (req, res) => {
   }
 });
 
-app.get('/rooms/:id/getPhotosByRoomID', async (req, res) => {
+app.get('/rooms/:id/getPhotosByRoomId', async (req, res) => {
   try {
-    const response = await axios.get(`http://ec2-18-191-199-80.us-east-2.compute.amazonaws.com:5005/rooms/${req.params.id}/getPhotosByRoomID`);
+    const response = await axios.get(`http://localhost:5005/rooms/${req.params.id}/getPhotosByRoomId`);
+    response.data.forEach(photo => {
+      if (photo.is_primary === null) {
+        photo.is_primary = true;
+      }
+    });
     res.send(response.data);
   } catch (err) {
     res.send(fallback.photos);
