@@ -77,7 +77,7 @@ app.get('/rooms/:id/getPhotosByRoomId', async (req, res) => {
 app.get('/users/:id', async (req, res) => {
   const uri = routes.users;
   try {
-    const response = await axios.get(`http://ec2-52-24-37-226.us-west-2.compute.amazonaws.com:5007/users/${req.params.id}`);
+    const response = await axios.get(`${uri}/users/${req.params.id}`);
     res.send(response.data);
   } catch (err) {
     res.send(fallback.user);
