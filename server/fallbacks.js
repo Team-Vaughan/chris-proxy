@@ -198,7 +198,8 @@ const summary = {
   'numBaths': 1,
   'numBeds': 1,
   'numBedrooms': 4,
-  '_id': '602c68795e4c664eb4dfe343'
+  '_id': '602c68795e4c664eb4dfe343',
+  'hostName': 'Toby'
 };
 
 const title = [
