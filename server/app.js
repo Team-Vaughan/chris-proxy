@@ -1,14 +1,17 @@
-const path = require('path');
-const fs = require('fs');
-const express = require('express');
+import path from 'path';
+import fs from 'fs';
+import express from 'express';
 const app = express();
-const axios = require('axios');
-const fallback = require('./fallbacks.js');
-const routes = require('./routes');
+import axios from 'axios';
+import fallback from './fallbacks.js';
+import routes from './routes.js';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server.js';
+import App from '../client/src/components/App.js';
+
 
 app.use('/', express.static('public'));
 app.use('/rooms/:id', express.static('public'));
-
 //***********/ RETRIEVE BUNDLES /***********//
 
 app.get('/header', async (req, res) => {
@@ -84,4 +87,4 @@ app.get('/users/:id', async (req, res) => {
   }
 });
 
-module.exports = app;
+export default app;

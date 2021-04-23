@@ -214,7 +214,7 @@ const title = [
   }
 ];
 
-module.exports = {
+export default {
   calendar,
   user,
   places,
