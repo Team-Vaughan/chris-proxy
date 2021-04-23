@@ -1,13 +1,35 @@
-const path = require('path');
-const fs = require('fs');
-const express = require('express');
+import path from 'path';
+import fs from 'fs';
+import express from'express';
 const app = express();
-const axios = require('axios');
-const fallback = require('./fallbacks.js');
-const routes = require('./routes');
+import axios from 'axios';
+import fallback from './fallbacks.js';
+import routes from './routes.js';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server.js';
+// import App from '../client/src/components/App.js';
+
 
 app.use('/', express.static('public'));
-app.use('/rooms/:id', express.static('public'));
+// app.use('/rooms/:id', express.static('public'));
+
+app.get('/rooms/:id', (req, res) => {
+  const app = ReactDOMServer.renderToString(<App />);
+
+  const indexFile = path.resolve('./build/index.html');
+  fs.readFile(indexFile, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Something went wrong:', err);
+      return res.status(500).send('Oops, better luck next time!');
+    }
+
+    return res.send(
+      data.replace('<div id="root"></div>', `<div id="root">${app}</div>`)
+    );
+  });
+
+
+});
 
 //***********/ RETRIEVE BUNDLES /***********//
 
@@ -84,4 +106,4 @@ app.get('/users/:id', async (req, res) => {
   }
 });
 
-module.exports = app;
+export default app;
