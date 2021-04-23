@@ -12,7 +12,7 @@ app.get('/rooms/:id',
     }
     next();
   },
-  cache.route({ expire: 5000 }),
+  cache.route({ expire: 50000 }),
   ssr);
 
 try {
