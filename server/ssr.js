@@ -10,12 +10,13 @@ import ReactDOMServer from 'react-dom/server.js';
 import App from '../client/src/components/App.js';
 
 
-app.use('/', express.static('public'));
+// app.use('/', express.static('public'));
 // app.use('/rooms/:id', express.static('public'));
 
 const ssr = (req, res) => {
 
-  const app = ReactDOMServer.renderToString(<App />);
+  // const app = ReactDOMServer.renderToString(<App />);
+  const app = ReactDOMServer.renderToString(React.createElement(App));
 
   const indexFile = path.resolve('./public/index.html');
   fs.readFile(indexFile, 'utf8', (err, data) => {

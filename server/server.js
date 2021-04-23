@@ -4,7 +4,7 @@ import ssr from './ssr.js';
 // import newrelic from 'newrelic';
 // import '@babel/register';
 
-app.get('rooms/:id', ssr);
+app.get('/rooms/:id', ssr);
 
 app.listen(PORT, () => {
   console.log(`Serving app at http://localhost:${PORT}`);
