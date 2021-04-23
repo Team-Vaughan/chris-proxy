@@ -1,11 +1,14 @@
 import app from './app.js';
 const PORT = process.env.PORT || 5000;
 import ssr from './ssr.js';
-// import newrelic from 'newrelic';
-// import '@babel/register';
+import newrelic from 'newrelic';
 
 app.get('/rooms/:id', ssr);
 
-app.listen(PORT, () => {
-  console.log(`Serving app at http://localhost:${PORT}`);
-});
+try {
+  app.listen(PORT, () => {
+    console.log(`Serving app at port ${PORT}`);
+  });
+} catch (e) {
+  console.log(`server failed to connect: ${e}`);
+}

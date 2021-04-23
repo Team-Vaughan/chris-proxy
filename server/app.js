@@ -11,26 +11,7 @@ import App from '../client/src/components/App.js';
 
 
 app.use('/', express.static('public'));
-// app.use('/rooms/:id', express.static('public'));
-
-// app.get('/rooms/:id', (req, res) => {
-//   const app = ReactDOMServer.renderToString(<App />);
-
-//   const indexFile = path.resolve('./public/index.html');
-//   fs.readFile(indexFile, 'utf8', (err, data) => {
-//     if (err) {
-//       console.error('Something went wrong:', err);
-//       return res.status(500).send('Oops, better luck next time!');
-//     }
-
-//     return res.send(
-//       data.replace('<div id="root"></div>', `<div id="root">${app}</div>`)
-//     );
-//   });
-
-
-// });
-
+app.use('/rooms/:id', express.static('public'));
 //***********/ RETRIEVE BUNDLES /***********//
 
 app.get('/header', async (req, res) => {
